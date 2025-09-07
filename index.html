@@ -1,0 +1,399 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Aditya Sachan Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+    body {
+      font-family: "Montserrat", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000000;
+      color: #ffffff;
+    }
+    /* Animate the concentric rings by rotating the SVG group */
+    @keyframes rotateRings {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .rings-group {
+      transform-origin: 50% 50%;
+      animation: rotateRings 30s linear infinite;
+    }
+    /* Section backgrounds with black and white theme */
+    section {
+      opacity: 0;
+      transform: translateY(40px) translateZ(0);
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-duration: 1s;
+      animation-name: fadeUp;
+      box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.8),
+        0 8px 20px rgba(0, 0, 0, 0.9);
+      border-radius: 0.75rem;
+      transition: box-shadow 0.3s ease;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+      background-color: rgba(255 255 255 / 0.05);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+    }
+    section:hover {
+      box-shadow:
+        0 10px 15px rgba(0, 0, 0, 0.9),
+        0 20px 40px rgba(0, 0, 0, 1);
+      transform: translateY(0) translateZ(30px);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+      }
+    }
+    /* Name animation */
+    @keyframes fadeSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) translateZ(0);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(30px);
+      }
+    }
+    .animated-name {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      overflow: hidden;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .animated-name h1 {
+      font-size: 20vw;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      color: transparent;
+      -webkit-text-stroke: 2px white;
+      text-stroke: 2px white;
+      animation: fadeSlideIn 1.5s ease forwards;
+      white-space: nowrap;
+      user-select: none;
+      margin: 0;
+    }
+    .typing {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: monospace, monospace;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 20ch; /* match text length */
+  animation: typing-erase 8s steps(20, end) infinite,
+             blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing-erase {
+  0%   { width: 0 }       /* start empty */
+  40%  { width: 20ch }    /* typed full text */
+  60%  { width: 20ch }    /* pause with full text */
+  100% { width: 0 }       /* erased back */
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent }
+  50% { border-color: white }
+}
+    /* Links */
+    a {
+      color: #d1d5db; /* gray-300 */
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #f9fafb; /* gray-50 */
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+  <!-- Navbar -->
+  <nav class="w-full bg-black fixed top-0 left-0 z-40 shadow-lg border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="text-white font-extrabold text-lg tracking-widest select-none">
+          <a href="./index.html">ADITYA</a>
+        </div>
+        <!-- Desktop Menu -->
+        <div class="hidden sm:block">
+          <ul class="flex space-x-10 text-sm">
+            <li>
+              <a class="border-white pb-1 font-extrabold uppercase tracking-widest transition-colors duration-300" href="#about">
+                ABOUT
+              </a>
+            </li>
+            <li>
+              <a class="hover:text-gray-300 font-extrabold uppercase tracking-widest transition-colors duration-300" href="./projects.html">
+                PROJECTS
+              </a>
+            </li>
+            <li>
+              <a class="hover:text-gray-300 font-extrabold uppercase tracking-widest transition-colors duration-300" href="#skills">
+                SKILLS
+              </a>
+            </li>
+            <li>
+              <a class="hover:text-gray-300 font-extrabold uppercase tracking-widest transition-colors duration-300" href="#certifications">
+                CERTIFICATIONS
+              </a>
+            </li>
+            <li>
+              <a class="hover:text-gray-300 font-extrabold uppercase tracking-widest transition-colors duration-300" href="./contact.html">
+                CONTACT
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="sm:hidden relative">
+          <button id="menu-btn" aria-label="Toggle menu" class="text-white focus:outline-none">
+            <i class="fas fa-ellipsis-v fa-lg"></i>
+          </button>
+          <!-- Mobile menu -->
+          <div id="mobile-menu" class="hidden absolute right-0 mt-2 w-48 bg-black border border-gray-800 rounded shadow-lg z-50">
+            <ul class="flex flex-col">
+              <li>
+                <a href="#about" class="block px-4 py-3 border-b border-gray-800 font-extrabold uppercase tracking-widest transition-colors duration-300 hover:bg-gray-300 hover:text-black">
+                  ABOUT
+                </a>
+              </li>
+              <li>
+                <a href="./projects.html" class="block px-4 py-3 border-b border-gray-800 font-extrabold uppercase tracking-widest transition-colors duration-300 hover:bg-gray-300 hover:text-black">
+                  PROJECTS
+                </a>
+              </li>
+              <li>
+                <a href="#skills" class="block px-4 py-3 border-b border-gray-800 font-extrabold uppercase tracking-widest transition-colors duration-300 hover:bg-gray-300 hover:text-black">
+                  SKILLS
+                </a>
+              </li>
+              <li>
+                <a href="#certifications" class="block px-4 py-3 border-b border-gray-800 font-extrabold uppercase tracking-widest transition-colors duration-300 hover:bg-gray-300 hover:text-black">
+                  CERTIFICATIONS
+                </a>
+              </li>
+              <li>
+                <a href="./contact.html" class="block px-4 py-3 font-extrabold uppercase tracking-widest transition-colors duration-300 hover:bg-gray-300 hover:text-black rounded-b">
+                  CONTACT
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content container -->
+  <main class="flex-grow pt-20">
+    <!-- Hero Section with animated rings and outlined banner text -->
+    <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-0">
+      <svg aria-hidden="true" class="absolute inset-0 w-full h-full" fill="none" style="z-index: 0;" viewBox="0 0 960 1080" xmlns="http://www.w3.org/2000/svg">
+        <g class="rings-group" transform="translate(480 540)">
+          <circle r="250" stroke="#ff0" stroke-width="8" stroke-dasharray="400 200" fill="none"></circle>
+          <circle r="220" stroke="#f0f" stroke-width="6" stroke-dasharray="300 150" fill="none"></circle>
+          <circle r="190" stroke="#0ff" stroke-width="7" stroke-dasharray="350 175" fill="none"></circle>
+          <circle r="160" stroke="#0f0" stroke-width="5" stroke-dasharray="280 140" fill="none"></circle>
+          <circle r="130" stroke="#ff4500" stroke-width="6" stroke-dasharray="250 125" fill="none"></circle>
+          <circle r="100" stroke="#1e90ff" stroke-width="4" stroke-dasharray="200 100" fill="none"></circle>
+          <circle r="70" stroke="#ff1493" stroke-width="5" stroke-dasharray="150 75" fill="none"></circle>
+          <circle r="40" stroke="#adff2f" stroke-width="3" stroke-dasharray="100 50" fill="none"></circle>
+          <circle r="15" stroke="#00ced1" stroke-width="4" stroke-dasharray="50 25" fill="none"></circle>
+        </g>
+      </svg>
+      <div class="animated-name relative z-10">
+        <h1>ADITYA</h1>
+        <div class="typing mt-2" aria-label="Aspiring AI Engineer">ASPIRING AI ENGINEER</div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 rounded-lg mt-10 sm:mt-12" id="about" style="background: rgba(0,0,0,0.85); box-shadow: 0 4px 15px rgba(0,0,0,0.7);">
+      <h2 class="text-white font-extrabold text-3xl sm:text-4xl uppercase tracking-widest mb-6 sm:mb-8 border-b-2 border-white inline-block pb-2">
+        ABOUT
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+       Hi, I’m Aditya Sachan 👋, a passionate aspiring AI Engineer and Data Science professional who loves building creative solutions with data and code.
+
+I have a strong foundation in Computer Science, with hands-on experience in Data Structures & Algorithms, Data Analysis, and Machine Learning. My projects reflect my curiosity to solve real-world problems through data-driven approaches.
+
+Over time, I have worked on projects ranging from predictive modeling and data visualization to intelligent AI systems. I enjoy combining analytical thinking and creativity to extract insights and build impactful solutions.
+
+Beyond academics, I love exploring the latest advancements in Data Science and Artificial Intelligence, contributing to open-source, and collaborating on community-driven projects. My long-term vision is to build AI-powered platforms that bring value to society.
+
+When I’m not working with data, you’ll find me reading about emerging technologies, experimenting with new tools, or brainstorming ideas for my next project 🚀.
+      </p>
+    </section>
+    <!-- Skills Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 rounded-lg mt-10 sm:mt-12" id="skills" style="background: rgba(30,30,30,0.85); box-shadow: 0 4px 15px rgba(30,30,30,0.7);">
+      <h2 class="text-white font-extrabold text-3xl sm:text-4xl uppercase tracking-widest mb-6 sm:mb-8 border-b-2 border-white inline-block pb-2">
+        SKILLS
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">
+        <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+              alt="C++ Icon"
+              class="w-12 h-12 mx-auto mb-2" />
+          <h3 class="text-white font-semibold text-lg">C++</h3>
+        </div>
+
+        <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+              alt="Python Icon"
+              class="w-12 h-12 mx-auto mb-2" />
+          <h3 class="text-white font-semibold text-lg">Python</h3>
+        </div>
+      <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+        <img src="https://icon.icepanel.io/Technology/svg/NumPy.svg"
+            alt="NumPy Icon"
+            class="w-12 h-12 mx-auto mb-2" />
+        <h3 class="text-white font-semibold text-lg">NumPy</h3>
+      </div>
+       <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+        <img src="https://icon.icepanel.io/Technology/svg/Pandas.svg"
+            alt="NumPy Icon"
+            class="w-12 h-12 mx-auto mb-2" />
+        <h3 class="text-white font-semibold text-lg">Pandas</h3>
+      </div>
+        <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+        <img src="https://icon.icepanel.io/Technology/svg/scikit-learn.svg"
+            alt="NumPy Icon"
+            class="w-12 h-12 mx-auto mb-2" />
+        <h3 class="text-white font-semibold text-lg">Scikit Learn</h3>
+      </div>
+        <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+          <i class="fas fa-database text-yellow-600 text-4xl mb-2"></i>
+          <h3 class="text-white font-semibold text-lg">Databases</h3>
+        </div>
+        <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+          <i class="fab fa-git-alt text-red-500 text-4xl mb-2"></i>
+          <h3 class="text-white font-semibold text-lg">Git</h3>
+        </div>
+        <div class="bg-black p-4 rounded-lg text-center border border-gray-700 shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+        <img src="https://cdn-icons-png.freepik.com/128/4616/4616734.png"
+            alt="NumPy Icon"
+            class="w-12 h-12 mx-auto mb-2" />
+        <h3 class="text-white font-semibold text-lg">Machine Learning</h3>
+      </div>
+    </section>
+    <!-- Certifications Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 rounded-lg mt-10 sm:mt-12" id="certifications" style="background: rgba(27, 26, 27, 0.85); box-shadow: 0 4px 15px rgba(27, 26, 27, 0.7);">
+      <h2 class="text-white font-extrabold text-3xl sm:text-4xl uppercase tracking-widest mb-10 border-b-2 border-white inline-block pb-2">
+        CERTIFICATIONS
+      </h2>
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="cert-item flex items-center space-x-4">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Harvard_University_shield.svg/1779px-Harvard_University_shield.svg.png" alt="Coursera logo" class="cert-image" style="width:60px; height:60px; object-fit:contain; border-radius:0.375rem; background:#fff; padding:0.25rem;" />
+          <div class="cert-content">
+            <div class="cert-title">CS 50</div>
+            <div class="cert-issuer">Harvard University</div>
+            <div class="cert-date">Issued: 2025</div>
+            <div class="cert-download"><a href="./assets/CS50x.pdf" target="_blank" rel="noopener">Download Certificate</a></div>
+          </div>
+        </div>
+        <div class="cert-item flex items-center space-x-4">
+          <img src="https://yt3.googleusercontent.com/ytc/AIdro_m6psai1Pd5oG3nGbw_hVfG-qmJ8R1ntco83MTXDf5cdoo=s900-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo" class="cert-image" style="width:60px; height:60px; object-fit:contain; border-radius:0.375rem; background:#fff; padding:0.25rem;" />
+          <div class="cert-content">
+            <div class="cert-title">Associate Data Analyst In SQL</div>
+            <div class="cert-issuer">Data Camp</div>
+            <div class="cert-date">Issued: 2025</div>
+            <div class="cert-download"><a href="./assets/Associate Data Analyst in SQL.pdf" target="_blank" rel="noopener">Download Certificate</a></div>
+          </div>
+        </div>
+        <div class="cert-item flex items-center space-x-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo3pl_zOXCdfxx2ksowu1H39fbyBpFMdo7Dw&s" alt="Udemy logo" class="cert-image" style="width:60px; height:60px; object-fit:contain; border-radius:0.375rem; background:#fff; padding:0.25rem;" />
+          <div class="cert-content">
+            <div class="cert-title">Machine Learning Specialization</div>
+            <div class="cert-issuer">Coursera - Stanford University</div>
+            <div class="cert-date">Issued: 2024</div>
+            <div class="cert-download"><a href="./assets/Coursera_ML_Specialization.pdf" target="_blank" rel="noopener">Download Certificate</a></div>
+          </div>
+        </div>
+        <div class="cert-item flex items-center space-x-4">
+          <img src="https://scaler-blog-prod-wp-content.s3.ap-south-1.amazonaws.com/wp-content/uploads/2022/10/22114541/Scaler_Logo_WhiteBG.jpg" alt="OpenJS Foundation logo" class="cert-image" style="width:60px; height:60px; object-fit:contain; border-radius:0.375rem; background:#fff; padding:0.25rem;" />
+          <div class="cert-content">
+            <div class="cert-title">DBMS</div>
+            <div class="cert-issuer">Scaler</div>
+            <div class="cert-date">Issued: 2025</div>
+            <div class="cert-download"><a href="./assets/Scaler DBMS.png" target="_blank" rel="noopener">Download Certificate</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 rounded-lg mt-10 sm:mt-12" id="contact" style="background: rgba(0,0,0,0.85); box-shadow: 0 4px 15px rgba(0,0,0,0.7);">
+      <h2 class="text-white font-extrabold text-3xl sm:text-4xl uppercase tracking-widest mb-10 border-b-2 border-white inline-block pb-2">
+        CONTACT
+      </h2>
+      <div class="max-w-4xl mx-auto space-y-6 text-gray-300">
+        <div>
+          <h3 class="font-semibold text-xl mb-2">Address</h3>
+          <p>Kanpur, Uttar Pradesh, India</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-xl mb-2">Phone</h3>
+          <p>+91 (77869) 83630</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-xl mb-2">Email</h3>
+          <p><a href="mailto:adityasachan63769@gmail.com" class="text-gray-300 hover:underline">adityasachan63769@gmail.com</a></p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-xl mb-2">LinkedIn</h3>
+          <p><a href="https://www.linkedin.com/in/aditya-sachan-61b072260" target="_blank" rel="noopener" class="text-gray-300 hover:underline">linkedin.com/in/aditya-sachan-61b072260</a></p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-xl mb-2">GitHub</h3>
+          <p><a href="https://github.com/AdityaSachan" target="_blank" rel="noopener" class="text-gray-300 hover:underline">github.com/AdityaSachan</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-black border-t border-gray-800 mt-12 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm space-y-4 sm:space-y-0">
+      <p>© 2025 Aditya Sachan. All rights reserved.</p>
+      <a href="./assets/aditya-sachan (10).pdf" download class="footer-download-btn" target="_blank" rel="noopener">
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+      <div class="flex space-x-6">
+        <a href="#" aria-label="Twitter" class="hover:text-gray-300 transition-colors duration-300">
+          <i class="fab fa-twitter fa-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/aditya-sachan-61b072260/" aria-label="LinkedIn" class="hover:text-gray-300 transition-colors duration-300">
+          <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://github.com/AdityaSachan" aria-label="GitHub" class="hover:text-gray-300 transition-colors duration-300">
+          <i class="fab fa-github fa-lg"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
